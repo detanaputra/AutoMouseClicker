@@ -33,6 +33,21 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <DockPanel Margin="-16 -16 -16 0" Grid.Row="0" Grid.ColumnSpan="6">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="Save Coordinates" Click="SavePosBtn_Click"/>
+                    <MenuItem Header="Load Coordinates" Click="LoadPosBtn_Click"/>
+                    <MenuItem Header="Close Program" Click="MenuItem_CloseProgram"/>
+                </MenuItem>
+                <MenuItem Header="_Help">
+                    <MenuItem Header="How To Use" Click="MenuItem_HowToUse" />
+                    <MenuItem Header="Documentation" Click="MenuItem_Documentation" />
+                </MenuItem>
+            </Menu>
+            <StackPanel></StackPanel>
+        </DockPanel>
+
         <Label Content="Main Iteration Config:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Padding="0"/>
         <Label Content="Delay:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Padding="0"/>
         <TextBox x:Name="DelayTextBox" Text="1000" Grid.Row="2" Grid.Column="1" Margin="0,0,8,8" ToolTip="Make sure this doesn't contain character other than number"/>
@@ -52,8 +67,8 @@
         <TextBox x:Name="RepeatTextBox" Text="0" Grid.Row="3" Grid.Column="1" Margin="0,0,8,8"  ToolTip="Make sure this doesn't contain character other than number"/>
         <Label Content="Cycles" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" Padding="0"/>
 
-        <Button x:Name="SavePosBtn" Grid.Row="0" Grid.Column="4" Content="Save Position" Click="SavePosBtn_Click" />
-        <Button x:Name="LoadPosBtn" Grid.Row="0" Grid.Column="5" Content="Load Position" Click="LoadPosBtn_Click" />
+        <!--<Button x:Name="SavePosBtn" Grid.Row="0" Grid.Column="4" Content="Save Position" Click="SavePosBtn_Click" />
+        <Button x:Name="LoadPosBtn" Grid.Row="0" Grid.Column="5" Content="Load Position" Click="LoadPosBtn_Click" />-->
         <Label Content="Main Iteration" Grid.Row="1" Grid.Column="4" VerticalAlignment="Bottom" Padding="0" HorizontalAlignment="Center"/>
         <ListBox x:Name="PositionListBox" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="1" Grid.RowSpan="3" ItemsSource="{Binding MainIterationCoordinates}" Margin="0,0,8,0" />
         <Label Content="Inbetween Iteration" Grid.Row="1" Grid.Column="5" VerticalAlignment="Bottom" Padding="0" HorizontalAlignment="Center"/>
@@ -62,13 +77,37 @@
         <Label Content="Record InBetween" Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" Padding="0" HorizontalAlignment="Left"/>
         <CheckBox x:Name="RecordInBetweenCheckBox" Grid.Row="5" Grid.Column="5" VerticalAlignment="Center" />
 
-        <Border Grid.Row="6" Grid.RowSpan="6" Grid.Column="4" Grid.ColumnSpan="2" BorderThickness="1px" BorderBrush="#FF979797" />
-        <TextBlock x:Name="KnowHowTextBlock" Grid.Row="6" Grid.RowSpan="6" Grid.Column="4" Grid.ColumnSpan="2" Margin="8px" TextWrapping="Wrap" />
+        <Border Grid.Row="6" Grid.RowSpan="3" Grid.Column="4" Grid.ColumnSpan="2" BorderThickness="1px" BorderBrush="#FF979797" />
+        <TextBlock x:Name="GuideTextBlock" Grid.Row="6" Grid.RowSpan="3" Grid.Column="4" Grid.ColumnSpan="2" Margin="8px" TextWrapping="Wrap" />
 
-        <Button x:Name="StartBtn" Grid.Row="15" Grid.Column="1" Content="Start" Click="StartBtn_Click" />
-        <Button x:Name="ClearBtn" Grid.Row="15" Grid.Column="4" Content="Clear All" Click="ClearBtn_Click" />
-        <Label Content="by detanaputra 2021" Grid.Row="15" Grid.Column="5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Padding="0"/>
-        <Label x:Name="AppVersionLabel" Content="V" Grid.Row="15" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Padding="0"/>
+        <Button x:Name="StartBtn" Grid.Row="12" Grid.Column="1" Content="Start" Click="StartBtn_Click" />
+        <Button x:Name="ClearBtn" Grid.Row="12" Grid.Column="4" Content="Clear All" Click="ClearBtn_Click" />
+        <Rectangle Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="6" Margin="-16 8 -16 -16" Fill="#169BD7" />
+        <Label FontWeight="Bold" FontStyle="Italic" Content="Please donate to support Developer" Grid.Row="13" Grid.Column="0" 
+               Grid.ColumnSpan="6" Margin="-16 8 -16 -16" VerticalAlignment="Center" Foreground="White" />
+        <Button x:Name="DonateBtn" Content="Donate" Grid.Row="13" Grid.Column="6" Margin="-16 8 -16 -16" 
+                Background="#FF253B80" Foreground="White" FontWeight="Bold" FontStyle="Italic" BorderBrush="{x:Null}">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF253B80" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FFCB0A" TargetName="Border" />
+                                        <Setter Property="Foreground" Value="#FF253B80"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 
 

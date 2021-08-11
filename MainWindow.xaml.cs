@@ -1,4 +1,6 @@
-﻿using Microsoft.Win32;
+﻿using AutoMouseClicker.Help;
+
+using Microsoft.Win32;
 
 using Newtonsoft.Json;
 
@@ -133,7 +135,7 @@ namespace AutoMouseClicker
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Keyboard.AddKeyDownHandler(this, new KeyEventHandler(OnKeyboardInputReceived));
-            SetupKnowHowTextBlock();
+            SetupGuideTextBlock();
             keyboardListener = new LowLevelKeyboardListener();
             keyboardListener.OnKeyPressed += OnKeyboardInputReceived;
             keyboardListener.HookKeyboard(this);
@@ -145,9 +147,29 @@ namespace AutoMouseClicker
             keyboardListener.UnHookKeyboard();
         }
 
-        private void Test(object sender, KeyEventArgs e)
+        private void MenuItem_CloseProgram(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(e.Key);
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to quit?", "Confirmation", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                Close();
+            }
+        }
+
+        private void MenuItem_Documentation(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("We are hosting our documentation in SourceForge.net. Do you want to visit the documentation?", "Confirmation", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                string url = "https://sourceforge.net/p/automouseclicker/wiki/Home/";
+                Process.Start(new ProcessStartInfo("cmd", $"/c start {url}"));
+            }
+        }
+
+        private void MenuItem_HowToUse(object sender, RoutedEventArgs e)
+        {
+            HowToUse howToUseWindow = new HowToUse();
+            howToUseWindow.Show();
         }
     }
 }

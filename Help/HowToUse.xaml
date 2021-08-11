@@ -1,0 +1,16 @@
+﻿<Window x:Class="AutoMouseClicker.Help.HowToUse"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoMouseClicker.Help"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="HowToUse" Height="320" Width="256">
+    <StackPanel Margin="8">
+        <ScrollViewer CanContentScroll="True" Height="211">
+            <TextBlock x:Name="HowToUseText" TextWrapping="Wrap" />
+        </ScrollViewer>
+        <Button x:Name="CloseBtn" Content="Close" Click="CloseBtn_Click" Height="35" VerticalAlignment="Bottom" />
+    </StackPanel>
+</Window>

@@ -133,12 +133,11 @@ namespace AutoMouseClicker
             }
         }
 
-        private void SetupKnowHowTextBlock()
+        private void SetupGuideTextBlock()
         {
-            KnowHowTextBlock.Text = "How to use: \n " +
-                "When application is active, move your cursor/mouse into position then press CTRL to record that position." +
-                "The position mouse list should be updated with that coordinate. Keep recording until your positions are all recorded then press Start." +
-                "\n if something goes wrong, pres ESC to cancel iteration";
+            GuideTextBlock.Text = "Quick guide: \n " +
+                "CTRL : record mouse coordinate.\n " +
+                "ESC : cancel mouse iteration";
         }
 
         private bool VerifyUserInput()
