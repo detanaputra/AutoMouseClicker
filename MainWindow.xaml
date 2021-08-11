@@ -1,0 +1,76 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoMouseClicker"
+        x:Class="AutoMouseClicker.MainWindow"
+        Loaded="Window_Loaded"
+        Unloaded="Window_Unloaded"
+        Title="Auto Mouse Clicker" Height="650" Width="800">
+    <Grid x:Name="GridLayout" Margin="16px">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="Main Iteration Config:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Padding="0"/>
+        <Label Content="Delay:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Padding="0"/>
+        <TextBox x:Name="DelayTextBox" Text="1000" Grid.Row="2" Grid.Column="1" Margin="0,0,8,8" ToolTip="Make sure this doesn't contain character other than number"/>
+        <Label Content="Miliseconds" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Padding="0"/>
+
+        <Label Content="InBetween Iteration Config:" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Padding="0"/>
+        <Label Content="Use InBetween:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Top" Padding="0"/>
+        <Label Content="InBetween Delay:" Grid.Row="6" Grid.Column="0" VerticalAlignment="Top" Padding="0"/>
+        <CheckBox x:Name="UseInBetweenCheckBox" Grid.Row="5" Grid.Column="1" />
+        <TextBox x:Name="InBetweenDelayTextBox" Text="2000" Grid.Row="6" Grid.Column="1" Margin="0,0,8,8" ToolTip="Make sure this doesn't contain character other than number"/>
+        <Label Content="Miliseconds" Grid.Row="6" Grid.Column="2" VerticalAlignment="Top" Padding="0"/>
+        <Label Content="Execute Every:" Grid.Row="7" Grid.Column="0" VerticalAlignment="Top" Padding="0"/>
+        <TextBox x:Name="ExecuteInBetweenEveryTextBox" Text="15" Grid.Row="7" Grid.Column="1" Margin="0,0,8,8" ToolTip="Make sure this doesn't contain character other than number"/>
+        <Label Content="Cycles" Grid.Row="7" Grid.Column="2" VerticalAlignment="Top" Padding="0"/>
+
+        <Label Content="Repeat:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" Padding="0"/>
+        <TextBox x:Name="RepeatTextBox" Text="0" Grid.Row="3" Grid.Column="1" Margin="0,0,8,8"  ToolTip="Make sure this doesn't contain character other than number"/>
+        <Label Content="Cycles" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" Padding="0"/>
+
+        <Button x:Name="SavePosBtn" Grid.Row="0" Grid.Column="4" Content="Save Position" Click="SavePosBtn_Click" />
+        <Button x:Name="LoadPosBtn" Grid.Row="0" Grid.Column="5" Content="Load Position" Click="LoadPosBtn_Click" />
+        <Label Content="Main Iteration" Grid.Row="1" Grid.Column="4" VerticalAlignment="Bottom" Padding="0" HorizontalAlignment="Center"/>
+        <ListBox x:Name="PositionListBox" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="1" Grid.RowSpan="3" ItemsSource="{Binding MainIterationCoordinates}" Margin="0,0,8,0" />
+        <Label Content="Inbetween Iteration" Grid.Row="1" Grid.Column="5" VerticalAlignment="Bottom" Padding="0" HorizontalAlignment="Center"/>
+        <ListBox x:Name="InBetweenPositionListBox" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="1" Grid.RowSpan="3" ItemsSource="{Binding InBetweenIterationCoordinates}" Margin="8,0,0,0" />
+
+        <Label Content="Record InBetween" Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" Padding="0" HorizontalAlignment="Left"/>
+        <CheckBox x:Name="RecordInBetweenCheckBox" Grid.Row="5" Grid.Column="5" VerticalAlignment="Center" />
+
+        <Border Grid.Row="6" Grid.RowSpan="6" Grid.Column="4" Grid.ColumnSpan="2" BorderThickness="1px" BorderBrush="#FF979797" />
+        <TextBlock x:Name="KnowHowTextBlock" Grid.Row="6" Grid.RowSpan="6" Grid.Column="4" Grid.ColumnSpan="2" Margin="8px" TextWrapping="Wrap" />
+
+        <Button x:Name="StartBtn" Grid.Row="15" Grid.Column="1" Content="Start" Click="StartBtn_Click" />
+        <Button x:Name="ClearBtn" Grid.Row="15" Grid.Column="4" Content="Clear All" Click="ClearBtn_Click" />
+        <Label Content="by detanaputra 2021" Grid.Row="15" Grid.Column="5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Padding="0"/>
+        <Label x:Name="AppVersionLabel" Content="V" Grid.Row="15" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Padding="0"/>
+    </Grid>
+
+
+
+</Window>

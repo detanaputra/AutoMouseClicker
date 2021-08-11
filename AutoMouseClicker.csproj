@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Version>0.0.2</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="deliver\**" />
+    <EmbeddedResource Remove="deliver\**" />
+    <None Remove="deliver\**" />
+    <Page Remove="deliver\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="deliver.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>
