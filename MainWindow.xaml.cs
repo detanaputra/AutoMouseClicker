@@ -1,4 +1,26 @@
-﻿using AutoMouseClicker.Help;
+﻿// MIT License (MIT)
+//
+// Copyright (c) 2021 Deta Novian Anantika Putra (detanaputra)
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy 
+// of this software and associated documentation files (the “Software”), to deal 
+// in the Software without restriction, including without limitation the rights 
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+// copies of the Software, and to permit persons to whom the Software is 
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all 
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+using AutoMouseClicker.Help;
 
 using Microsoft.Win32;
 
@@ -8,7 +30,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -33,7 +54,7 @@ namespace AutoMouseClicker
             {
                 return;
             }
-            
+
             Cycles = 0;
             isIterating = true;
             int delay = int.Parse(DelayTextBox.Text);
@@ -41,9 +62,11 @@ namespace AutoMouseClicker
             bool useInBetween = (bool)UseInBetweenCheckBox.IsChecked;
             int inBetweenDelay = int.Parse(InBetweenDelayTextBox.Text);
             int executeInBetweenEvery = int.Parse(ExecuteInBetweenEveryTextBox.Text);
+            WindowState = WindowState.Minimized;
 
             await Task.Run(() => IterateMouseEvent(delay, repeat, useInBetween, inBetweenDelay, executeInBetweenEvery));
 
+            WindowState = WindowState.Normal;
             _ = Activate();
             if (isIterating) NotifySuccess("Mouse iteration is done");
             isIterating = false;
@@ -88,10 +111,9 @@ namespace AutoMouseClicker
                 try
                 {
                     using StreamReader streamReader = new(openFileDialog.FileName);
-                    //StreamReader streamReader = new(openFileDialog.FileName);
                     SaveData saveData = JsonConvert.DeserializeObject<SaveData>(streamReader.ReadToEnd());
                     MainIterationCoordinates.Clear();
-                    foreach(Point pos in saveData.MainIterationCoordinates)
+                    foreach (Point pos in saveData.MainIterationCoordinates)
                     {
                         MainIterationCoordinates.Add(pos);
                     }
@@ -101,7 +123,6 @@ namespace AutoMouseClicker
                     {
                         InBetweenIterationCoordinates.Add(pos);
                     }
-                    //streamReader.Close();
                     NotifySuccess("Success in loading file");
                     return;
                 }
@@ -139,7 +160,6 @@ namespace AutoMouseClicker
             keyboardListener = new LowLevelKeyboardListener();
             keyboardListener.OnKeyPressed += OnKeyboardInputReceived;
             keyboardListener.HookKeyboard(this);
-            //EventManager.RegisterClassHandler(typeof(Window), Window.PreviewKeyDownEvent, new KeyEventHandler(Test));
         }
 
         private void Window_Unloaded(object sender, RoutedEventArgs e)
@@ -170,6 +190,28 @@ namespace AutoMouseClicker
         {
             HowToUse howToUseWindow = new HowToUse();
             howToUseWindow.Show();
+        }
+
+        private void DonateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string url = "https://ko-fi.com/detanaputra";
+            Process.Start(new ProcessStartInfo("cmd", $"/c start {url}"));
+        }
+
+        private void SplitClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SplitClearContextMenu.PlacementTarget = SplitContextTarget;
+            SplitClearContextMenu.IsOpen = true;
+        }
+
+        private void SplitClearMain_Click(object sender, RoutedEventArgs e)
+        {
+            MainIterationCoordinates.Clear();
+        }
+
+        private void SplitClearInBetween_Click(object sender, RoutedEventArgs e)
+        {
+            InBetweenIterationCoordinates.Clear();
         }
     }
 }

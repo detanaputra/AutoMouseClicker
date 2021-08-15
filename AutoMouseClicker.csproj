@@ -4,20 +4,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>0.0.2</Version>
+    <Version>1.0.2</Version>
     <ApplicationIcon>AutoMouseClicker_ico.ico</ApplicationIcon>
+    <!--<PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>link</TrimMode>-->
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="deliver\**" />
-    <EmbeddedResource Remove="deliver\**" />
-    <None Remove="deliver\**" />
-    <Page Remove="deliver\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="deliver.zip" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

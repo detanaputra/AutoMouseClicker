@@ -71,7 +71,7 @@
         <Button x:Name="LoadPosBtn" Grid.Row="0" Grid.Column="5" Content="Load Position" Click="LoadPosBtn_Click" />-->
         <Label Content="Main Iteration" Grid.Row="1" Grid.Column="4" VerticalAlignment="Bottom" Padding="0" HorizontalAlignment="Center"/>
         <ListBox x:Name="PositionListBox" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="1" Grid.RowSpan="3" ItemsSource="{Binding MainIterationCoordinates}" Margin="0,0,8,0" />
-        <Label Content="Inbetween Iteration" Grid.Row="1" Grid.Column="5" VerticalAlignment="Bottom" Padding="0" HorizontalAlignment="Center"/>
+        <Label Content="InBetween Iteration" Grid.Row="1" Grid.Column="5" VerticalAlignment="Top" Padding="0" HorizontalAlignment="Center" Margin="0,27,0,0"/>
         <ListBox x:Name="InBetweenPositionListBox" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="1" Grid.RowSpan="3" ItemsSource="{Binding InBetweenIterationCoordinates}" Margin="8,0,0,0" />
 
         <Label Content="Record InBetween" Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" Padding="0" HorizontalAlignment="Left"/>
@@ -82,10 +82,19 @@
 
         <Button x:Name="StartBtn" Grid.Row="12" Grid.Column="1" Content="Start" Click="StartBtn_Click" />
         <Button x:Name="ClearBtn" Grid.Row="12" Grid.Column="4" Content="Clear All" Click="ClearBtn_Click" />
+        <Rectangle x:Name="SplitContextTarget" Grid.Row="11" Grid.Column="4" />
+        <Button x:Name="SplitClearBtn" Grid.Row="12" Grid.Column="5" Width="32" HorizontalAlignment="Left" Margin="4,0,0,0" Click="SplitClearBtn_Click" >
+            <Button.ContextMenu>
+                <ContextMenu x:Name="SplitClearContextMenu">
+                    <MenuItem Header="Clear Main Iteration" Click="SplitClearMain_Click" />
+                    <MenuItem Header="Clear InBetween Iteration" Click="SplitClearInBetween_Click"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
         <Rectangle Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="6" Margin="-16 8 -16 -16" Fill="#169BD7" />
         <Label FontWeight="Bold" FontStyle="Italic" Content="Please donate to support Developer" Grid.Row="13" Grid.Column="0" 
                Grid.ColumnSpan="6" Margin="-16 8 -16 -16" VerticalAlignment="Center" Foreground="White" />
-        <Button x:Name="DonateBtn" Content="Donate" Grid.Row="13" Grid.Column="6" Margin="-16 8 -16 -16" 
+        <Button x:Name="DonateBtn" Content="Donate" Grid.Row="13" Grid.Column="6" Margin="-16 8 -16 -16" Click="DonateBtn_Click"
                 Background="#FF253B80" Foreground="White" FontWeight="Bold" FontStyle="Italic" BorderBrush="{x:Null}">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
